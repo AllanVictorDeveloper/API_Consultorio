@@ -22,7 +22,7 @@ namespace CL.WebApi.Controllers
         {
             var clientes = await _clienteManager.GetClientesAsync();
 
-            return Ok(clientes);
+            return StatusCode(200, clientes);
         }
 
         [HttpGet("ListarPorId/{id}")]
@@ -38,7 +38,7 @@ namespace CL.WebApi.Controllers
         {
             var clienteAdd = await _clienteManager.AddClienteAsync(cliente);
 
-            return Ok(clienteAdd);
+            return StatusCode(202,clienteAdd);
         }
 
         [HttpPut("Atualizar")]
@@ -46,7 +46,7 @@ namespace CL.WebApi.Controllers
         {
             var clienteDeletado = await _clienteManager.UpdateClienteAsync(cliente);
 
-            return Ok(clienteDeletado);
+            return StatusCode(200, clienteDeletado);
 
         }
 
@@ -55,7 +55,7 @@ namespace CL.WebApi.Controllers
         {
             await _clienteManager.DeleteClienteAsync(id);
 
-            return Ok();
+            return StatusCode(204);
         }
     }
 }
