@@ -11,9 +11,6 @@ namespace CL.Data.Context
 
         public DbSet<Cliente> Clientes { get; set; }
 
-        internal Task FindAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }
