@@ -21,7 +21,8 @@ namespace CL.Data.Repository
 
         public async Task<Cliente> GetClienteAsync(int id)
         {
-            return await _CLContext.Clientes.FindAsync(id);
+            var Cliente = await _CLContext.Clientes.FindAsync(id);
+            return Cliente;
         }
 
         public async Task<Cliente> AddClienteAsync(Cliente cliente)
