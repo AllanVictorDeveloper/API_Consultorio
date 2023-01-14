@@ -1,4 +1,5 @@
 ﻿using CL.Core.Domain;
+using CL.Core.Shared.ModelViews;
 using CL.Manager.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -34,9 +35,9 @@ namespace CL.WebApi.Controllers
         }
 
         [HttpPost("Adicionar")]
-        public async Task<IActionResult> AdicionarCliente([FromBody] Cliente cliente)
+        public async Task<IActionResult> AdicionarCliente([FromBody] NovoCliente novoCliente)
         {
-            var clienteAdd = await _clienteManager.AddClienteAsync(cliente);
+            var clienteAdd = await _clienteManager.AddClienteAsync(novoCliente);
 
             return StatusCode(202,clienteAdd);
         }

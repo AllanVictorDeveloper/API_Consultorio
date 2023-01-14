@@ -1,21 +1,18 @@
 ﻿using CL.Core.Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CL.Core.Shared.ModelViews;
 
 namespace CL.Manager.Interfaces
 {
     public interface IClienteManager
     {
         Task<Cliente> GetClienteAsync(int id);
-        Task<IEnumerable<Cliente>> GetClientesAsync();
 
-        Task<Cliente> AddClienteAsync(Cliente cliente);
+        Task<IEnumerable<Cliente>> GetClientesAsync();
 
         Task<Cliente> UpdateClienteAsync(Cliente cliente);
 
         Task DeleteClienteAsync(int id);
+
+        Task<Cliente> AddClienteAsync(NovoCliente novoCliente);
     }
 }

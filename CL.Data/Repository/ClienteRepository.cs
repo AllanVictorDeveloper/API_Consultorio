@@ -1,4 +1,5 @@
 ﻿using CL.Core.Domain;
+using CL.Core.Shared.ModelViews;
 using CL.Data.Context;
 using CL.Manager.Interfaces;
 using Microsoft.EntityFrameworkCore;
