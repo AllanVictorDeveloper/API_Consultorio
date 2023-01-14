@@ -15,6 +15,7 @@ namespace CL.Data.Configuration
             builder.Property(x => x.Sexo).IsRequired();
             builder.Property(x => x.Criacao).ValueGeneratedOnAdd();
             builder.Property(x => x.UltimaAtualizacao).ValueGeneratedOnAdd();
+            builder.Property(x => x.Email).IsRequired().HasMaxLength(50);
 
             builder.ToTable("Tb_Clientes");
         }
