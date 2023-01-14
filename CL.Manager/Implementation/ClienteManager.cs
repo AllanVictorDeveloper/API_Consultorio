@@ -33,8 +33,10 @@ namespace CL.Manager.Implementation
             return await _clienteRepository.AddClienteAsync(cliente);
         }
 
-        public async Task<Cliente> UpdateClienteAsync(Cliente cliente)
+        public async Task<Cliente> UpdateClienteAsync(AlteraCliente alteraCliente)
         {
+            var cliente = mapper.Map<Cliente>(alteraCliente);
+
             return await _clienteRepository.UpdateClienteAsync(cliente);
         }
 

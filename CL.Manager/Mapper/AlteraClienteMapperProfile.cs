@@ -4,12 +4,12 @@ using CL.Core.Shared.ModelViews;
 
 namespace CL.Manager.Mapper
 {
-    public class NovoClienteMapperProfile : Profile
+    public class AlteraClienteMapperProfile : Profile
     {
-        public NovoClienteMapperProfile()
+        public AlteraClienteMapperProfile()
         {
-            CreateMap<NovoCliente, Cliente>()
-                .ForMember(d => d.Criacao, o => o.MapFrom(x => DateTime.Now))
+            CreateMap<AlteraCliente, Cliente>()
+                .ForMember(d => d.UltimaAtualizacao, o => o.MapFrom(x => DateTime.Now))
                 .ForMember(d => d.DataNascimento, o => o.MapFrom(x => x.DataNascimento.Date));
         }
     }

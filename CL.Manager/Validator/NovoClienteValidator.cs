@@ -18,6 +18,7 @@ namespace CL.Manager.Validator
             RuleFor(x => x.Documento).NotNull().NotEmpty().MinimumLength(5).MaximumLength(11);
             RuleFor(x => x.Telefone).NotNull().NotEmpty().Matches("[1-9][0-9]{11}").MinimumLength(9).WithMessage("O telefone tem que ter o formato [1-9][0-9]{9}");
             RuleFor(x => x.Sexo).NotNull().NotEmpty().Must(isMorF).WithMessage("Sexo precisa ser M ou F");
+            RuleFor(x => x.Email).NotNull().NotEmpty().WithMessage("O email é obrigatório");
         }
 
         

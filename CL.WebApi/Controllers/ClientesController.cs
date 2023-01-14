@@ -43,9 +43,9 @@ namespace CL.WebApi.Controllers
         }
 
         [HttpPut("Atualizar")]
-        public async Task<IActionResult> AtualizarPorId([FromBody] Cliente cliente)
+        public async Task<IActionResult> AtualizarPorId([FromBody] AlteraCliente alteraCliente)
         {
-            var clienteDeletado = await _clienteManager.UpdateClienteAsync(cliente);
+            var clienteDeletado = await _clienteManager.UpdateClienteAsync(alteraCliente);
 
             return StatusCode(200, clienteDeletado);
 

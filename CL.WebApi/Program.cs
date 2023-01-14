@@ -1,52 +1,39 @@
 using CL.Data.Context;
-using CL.Data.Repository;
-using CL.Manager.Implementation;
-using CL.Manager.Interfaces;
-using CL.Manager.Mapper;
-using CL.Manager.Validator;
-using FluentValidation.AspNetCore;
+using CL.WebApi.Configuration;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Models;
-using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers()
-    .AddFluentValidation(p =>
-    {
-        p.RegisterValidatorsFromAssemblyContaining<NovoClienteValidator>();
-        p.ValidatorOptions.LanguageManager.Culture = new CultureInfo("pt-br");
-    });
+builder.Services.AddControllers();
 
+// Configuração de FluentValidation
+builder.Services.AddFluentValidatorConfiguration();
 
-builder.Services.AddAutoMapper(typeof(NovoClienteMapperProfile));
+// Configuração de AutoMapper
+builder.Services.AddAutoMapperConfiguration();
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddDbContext<CLContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("Connection")));
+                    options.UseSqlServer(builder.Configuration.GetConnectionString("Connection")));
 
-builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
-builder.Services.AddScoped<IClienteManager, ClienteManager>();
+// Configuração de DependencyInjector
+builder.Services.AddDependencyInjectorConfiguration();
 
-builder.Services.AddSwaggerGen(c =>
-{
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Consultorio Legal", Version = "v1" });
-});
+// Configuração do Swagger
+builder.Services.AddSwaggerConfiguration();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
 }
 
-app.UseSwagger();
-app.UseSwaggerUI();
+// Configuração do Swagger
+app.AppSwaggerConfiguration();
 
 app.UseHttpsRedirection();
 
