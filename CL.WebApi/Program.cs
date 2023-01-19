@@ -17,7 +17,14 @@ builder.Services.AddAutoMapperConfiguration();
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddDbContext<CLContext>(options =>
-                    options.UseSqlServer(builder.Configuration.GetConnectionString("Connection")));
+                    options.UseNpgsql(builder.Configuration.GetConnectionString("Connection")));
+
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
+builder.Services.AddControllersWithViews()
+    .AddNewtonsoftJson(options =>
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+);
 
 // Configuração de DependencyInjector
 builder.Services.AddDependencyInjectorConfiguration();

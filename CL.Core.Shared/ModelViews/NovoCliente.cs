@@ -13,5 +13,8 @@
         public string Documento { get; set; }
 
         public string Email { get; set; }
+
+        public NovoEndereco Endereco { get; set; }
+
     }
 }
